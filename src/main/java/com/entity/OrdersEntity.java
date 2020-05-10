@@ -32,7 +32,7 @@ public class OrdersEntity implements Serializable{
 
     @Basic
     @Column(name = "writeAnInvoice")
-    private String writeAnInvoice;
+    private int writeAnInvoice;
 
     @Basic
     @Column(name = "goodsNumber")
@@ -63,7 +63,7 @@ public class OrdersEntity implements Serializable{
     }
 
     public OrdersEntity(String _id, String _orderNumber, String _salesPerson, String _createTime, String _dealTime,
-                       String _client, String _writeAnInvoice, String _goodsNumber, double _finalPrice, int _numbers,
+                       String _client, int _writeAnInvoice, String _goodsNumber, double _finalPrice, int _numbers,
                        double _totalAmount, String _typeOfPayment, String _typeOfShipping){
         this.id = _id;
         this.orderNumber = _orderNumber;
@@ -128,11 +128,11 @@ public class OrdersEntity implements Serializable{
         return client;
     }
 
-    public void setWriteAnInvoice(String _writeAnInvoice){
+    public void setWriteAnInvoice(int _writeAnInvoice){
         this.writeAnInvoice = _writeAnInvoice;
     }
 
-    public String getWriteAnInvoice() {
+    public int getWriteAnInvoice() {
         return writeAnInvoice;
     }
 

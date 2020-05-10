@@ -15,19 +15,23 @@ public class PurchaseRecordController {
         return purchaseRecordService.addPurchaseRecord(purchaseRecordBean);
     }
 
-    @RequestMapping(value = "",method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public PurchaseRecordsBean getPurchaseRecords(@RequestBody GetPurchaseRecordsBean bean){
         return purchaseRecordService.getPurchaseRecords(bean);
     }
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public SinglePurchaseRecordByIdBean getSinglePurchaseRecordById(@PathVariable(value="id") String id){
         return purchaseRecordService.getSinglePurchaseRecordById(id);
     }
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public String updateSinglePurchaseRecordById(@RequestBody UpdateSinglePurchaseRecordsBean bean){
         return purchaseRecordService.updateSinglePurchaseRecordById(bean);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public boolean deleteSinglePurchaseRecordById(@PathVariable(value="id") String id){
+        return purchaseRecordService.deleteSinglePurchaseRecordById(id);
+    }
 }

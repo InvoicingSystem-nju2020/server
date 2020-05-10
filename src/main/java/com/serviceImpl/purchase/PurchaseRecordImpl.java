@@ -218,4 +218,15 @@ public class PurchaseRecordImpl implements PurchaseRecordService {
         return "修改单个进货记录出错";
     }
 
+    @Override
+    public boolean deleteSinglePurchaseRecordById(String id) {
+        try{
+            purchaseRecordImpl.purchaseRecordRepository.deleteById(id);
+            return true;
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
 }

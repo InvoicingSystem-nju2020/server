@@ -10,4 +10,6 @@ public interface PurchaseRecordService {
     SinglePurchaseRecordByIdBean getSinglePurchaseRecordById(String id);
 
     String updateSinglePurchaseRecordById(UpdateSinglePurchaseRecordsBean bean);
+
+    boolean deleteSinglePurchaseRecordById(String id);
 }
