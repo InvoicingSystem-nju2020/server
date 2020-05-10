@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class ClientsEntity implements Serializable{
     @Id
     @Column(name = "id")
-    private int id;
+    private String id;
 
     @Basic
     @Column(name = "clientsNumber")
@@ -24,7 +24,7 @@ public class ClientsEntity implements Serializable{
 
     @Basic
     @Column(name = "balance")
-    private String balance;
+    private double balance;
 
     @Basic
     @Column(name = "clientsContact")
@@ -58,8 +58,8 @@ public class ClientsEntity implements Serializable{
 
     }
 
-    public ClientsEntity(int _id, String _clientsNumber, String _clientsName, String _clientsType,
-                                     String _balance, String _clientsContact, String _clientsSex, String _clientsPost,
+    public ClientsEntity(String _id, String _clientsNumber, String _clientsName, String _clientsType,
+                                     double _balance, String _clientsContact, String _clientsSex, String _clientsPost,
                          String _contactInformation, String _mail, String _remarks, String _other){
         this.id = _id;
         this.clientsNumber = _clientsNumber;
@@ -75,11 +75,11 @@ public class ClientsEntity implements Serializable{
         this.other = _other;
     }
 
-    public void setId(int _id){
+    public void setId(String _id){
         this.id = _id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -107,11 +107,11 @@ public class ClientsEntity implements Serializable{
         return clientsType;
     }
 
-    public void setBalance(String _balance){
+    public void setBalance(double _balance){
         this.balance = _balance;
     }
 
-    public String getBalance() {
+    public double getBalance() {
         return balance;
     }
 

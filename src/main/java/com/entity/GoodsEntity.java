@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class GoodsEntity implements Serializable{
     @Id
     @Column(name = "goodsId")
-    private int goodsId;
+    private String goodsId;
 
     @Basic
     @Column(name = "goodsNumber")
@@ -60,15 +60,15 @@ public class GoodsEntity implements Serializable{
 
     @Basic
     @Column(name = "stock")
-    private String stock;
+    private int stock;
 
     @Basic
     @Column(name = "buyingPrice")
-    private String buyingPrice;
+    private double buyingPrice;
 
     @Basic
     @Column(name = "retailPrice")
-    private String retailPrice;
+    private double retailPrice;
 
     @Basic
     @Column(name = "placeOfProduction")
@@ -86,9 +86,9 @@ public class GoodsEntity implements Serializable{
 
     }
 
-    public GoodsEntity(int _goodsId, String _goodsNumber, String _goodsName, String _abbreviation,
+    public GoodsEntity(String _goodsId, String _goodsNumber, String _goodsName, String _abbreviation,
                          String _brand, String _model, String _goodsNo, String _material, String _colour, String _type,
-                 String _specifications, String _unit, String _weight, String _stock, String _buyingPrice, String _retailPrice,
+                 String _specifications, String _unit, String _weight, int _stock, double _buyingPrice, double _retailPrice,
                  String _placeOfProduction, String _qualityGuaranteePeriod, String _remarks){
         this.goodsId = _goodsId;
         this.goodsNumber = _goodsNumber;
@@ -111,11 +111,11 @@ public class GoodsEntity implements Serializable{
         this.remarks = _remarks;
     }
 
-    public void setGoodsId(int _goodsId){
+    public void setGoodsId(String _goodsId){
         this.goodsId = _goodsId;
     }
 
-    public int getGoodsId() {
+    public String getGoodsId() {
         return goodsId;
     }
 
@@ -215,27 +215,27 @@ public class GoodsEntity implements Serializable{
         return weight;
     }
 
-    public void setStock(String _stock){
+    public void setStock(int _stock){
         this.stock = _stock;
     }
 
-    public String getStock() {
+    public int getStock() {
         return stock;
     }
 
-    public void setBuyingPrice(String _buyingPrice){
+    public void setBuyingPrice(double _buyingPrice){
         this.buyingPrice = _buyingPrice;
     }
 
-    public String getBuyingPrice() {
+    public double getBuyingPrice() {
         return buyingPrice;
     }
 
-    public void setRetailPrice(String _retailPrice){
+    public void setRetailPrice(double _retailPrice){
         this.retailPrice = _retailPrice;
     }
 
-    public String getRetailPrice() {
+    public double getRetailPrice() {
         return retailPrice;
     }
 

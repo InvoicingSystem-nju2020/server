@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class OrdersEntity implements Serializable{
     @Id
     @Column(name = "id")
-    private int id;
+    private String id;
 
     @Basic
     @Column(name = "orderNumber")
@@ -40,15 +40,15 @@ public class OrdersEntity implements Serializable{
 
     @Basic
     @Column(name = "finalPrice")
-    private String finalPrice;
+    private double finalPrice;
 
     @Basic
     @Column(name = "numbers")
-    private String numbers;
+    private int numbers;
 
     @Basic
     @Column(name = "totalAmount")
-    private String totalAmount;
+    private double totalAmount;
 
     @Basic
     @Column(name = "typeOfPayment")
@@ -62,9 +62,9 @@ public class OrdersEntity implements Serializable{
 
     }
 
-    public OrdersEntity(int _id, String _orderNumber, String _salesPerson, String _createTime, String _dealTime,
-                       String _client, String _writeAnInvoice, String _goodsNumber, String _finalPrice, String _numbers,
-                       String _totalAmount, String _typeOfPayment, String _typeOfShipping){
+    public OrdersEntity(String _id, String _orderNumber, String _salesPerson, String _createTime, String _dealTime,
+                       String _client, String _writeAnInvoice, String _goodsNumber, double _finalPrice, int _numbers,
+                       double _totalAmount, String _typeOfPayment, String _typeOfShipping){
         this.id = _id;
         this.orderNumber = _orderNumber;
         this.salesPerson = _salesPerson;
@@ -80,11 +80,11 @@ public class OrdersEntity implements Serializable{
         this.typeOfShipping = _typeOfShipping;
     }
 
-    public void setId(int _id){
+    public void setId(String _id){
         this.id = _id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -144,27 +144,27 @@ public class OrdersEntity implements Serializable{
         return goodsNumber;
     }
 
-    public void setFinalPrice(String _finalPrice){
+    public void setFinalPrice(double _finalPrice){
         this.finalPrice = _finalPrice;
     }
 
-    public String getFinalPrice() {
+    public double getFinalPrice() {
         return finalPrice;
     }
 
-    public void setNumbers(String _numbers){
+    public void setNumbers(int _numbers){
         this.numbers = _numbers;
     }
 
-    public String getNumbers() {
+    public int getNumbers() {
         return numbers;
     }
 
-    public void setTotalAmount(String _totalAmount){
+    public void setTotalAmount(double _totalAmount){
         this.totalAmount = _totalAmount;
     }
 
-    public String getTotalAmount() {
+    public double getTotalAmount() {
         return totalAmount;
     }
 

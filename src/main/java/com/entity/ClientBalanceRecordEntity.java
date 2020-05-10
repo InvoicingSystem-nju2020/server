@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class ClientBalanceRecordEntity implements Serializable{
     @Id
     @Column(name = "id")
-    private int id;
+    private String id;
 
     @Basic
     @Column(name = "clientsNumber")
@@ -20,7 +20,7 @@ public class ClientBalanceRecordEntity implements Serializable{
 
     @Basic
     @Column(name = "lastMonthSBalance")
-    private String lastMonthSBalance;
+    private double lastMonthSBalance;
 
     @Basic
     @Column(name = "remittanceDate")
@@ -28,18 +28,18 @@ public class ClientBalanceRecordEntity implements Serializable{
 
     @Basic
     @Column(name = "remittanceBalance")
-    private String remittanceBalance;
+    private double remittanceBalance;
 
     @Basic
     @Column(name = "purchaseBalance")
-    private String purchaseBalance;
+    private double purchaseBalance;
 
     public ClientBalanceRecordEntity(){
 
     }
 
-    public ClientBalanceRecordEntity(int _id, String _clientsNumber, String _month, String _lastMonthSBalance,
-                       String _remittanceDate, String _remittanceBalance, String _purchaseBalance){
+    public ClientBalanceRecordEntity(String _id, String _clientsNumber, String _month, double _lastMonthSBalance,
+                       String _remittanceDate, double _remittanceBalance, double _purchaseBalance){
         this.id = _id;
         this.clientsNumber = _clientsNumber;
         this.month = _month;
@@ -49,11 +49,11 @@ public class ClientBalanceRecordEntity implements Serializable{
         this.purchaseBalance = _purchaseBalance;
     }
 
-    public void setId(int _id){
+    public void setId(String _id){
         this.id = _id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -73,11 +73,11 @@ public class ClientBalanceRecordEntity implements Serializable{
         return month;
     }
 
-    public void setLastMonthSBalance(String _lastMonthSBalance){
+    public void setLastMonthSBalance(double _lastMonthSBalance){
         this.lastMonthSBalance = _lastMonthSBalance;
     }
 
-    public String getLastMonthSBalance() {
+    public double getLastMonthSBalance() {
         return lastMonthSBalance;
     }
 
@@ -89,19 +89,19 @@ public class ClientBalanceRecordEntity implements Serializable{
         return remittanceDate;
     }
 
-    public void setRemittanceBalance(String _remittanceBalance){
+    public void setRemittanceBalance(double _remittanceBalance){
         this.remittanceBalance = _remittanceBalance;
     }
 
-    public String getRemittanceBalance() {
+    public double getRemittanceBalance() {
         return remittanceBalance;
     }
 
-    public void setPurchaseBalance(String _purchaseBalance){
+    public void setPurchaseBalance(double _purchaseBalance){
         this.purchaseBalance = _purchaseBalance;
     }
 
-    public String getPurchaseBalance() {
+    public double getPurchaseBalance() {
         return purchaseBalance;
     }
 

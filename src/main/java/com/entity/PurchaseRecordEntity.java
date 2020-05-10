@@ -24,23 +24,23 @@ public class PurchaseRecordEntity implements Serializable{
 
     @Basic
     @Column(name = "numbers")
-    private String numbers;
+    private int numbers;
 
     @Basic
     @Column(name = "discount")
-    private String discount;
+    private double discount;
 
     @Basic
     @Column(name = "unitPrice")
-    private String unitPrice;
+    private double unitPrice;
 
     @Basic
     @Column(name = "balance")
-    private String balance;
+    private double balance;
 
     @Basic
     @Column(name = "taxIncluded")
-    private String taxIncluded;
+    private int taxIncluded;
 
     @Basic
     @Column(name = "precautionsForPreservation")
@@ -59,7 +59,7 @@ public class PurchaseRecordEntity implements Serializable{
     }
 
     public PurchaseRecordEntity(String _id, String _createTime, String _purchaseTime, String _goodsNumber,
-                                String _numbers, String _discount, String _unitPrice, String _balance, String _taxIncluded,
+                                int _numbers, double _discount, double _unitPrice, double _balance, int _taxIncluded,
                                 String _precautionsForPreservation, String _buyer, String _remarks){
         this.id = _id;
         this.createTime = _createTime;
@@ -107,43 +107,43 @@ public class PurchaseRecordEntity implements Serializable{
         return goodsNumber;
     }
 
-    public void setNumbers(String _numbers){
+    public void setNumbers(int _numbers){
         this.numbers = _numbers;
     }
 
-    public String getNumbers() {
+    public int getNumbers() {
         return numbers;
     }
 
-    public void setDiscount(String _discount){
+    public void setDiscount(double _discount){
         this.discount = _discount;
     }
 
-    public String getDiscount() {
+    public double getDiscount() {
         return discount;
     }
 
-    public void setUnitPrice(String _unitPrice){
+    public void setUnitPrice(double _unitPrice){
         this.unitPrice = _unitPrice;
     }
 
-    public String getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setBalance(String _balance){
+    public void setBalance(double _balance){
         this.balance = _balance;
     }
 
-    public String getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public void setTaxIncluded(String _taxIncluded){
+    public void setTaxIncluded(int _taxIncluded){
         this.taxIncluded = _taxIncluded;
     }
 
-    public String getTaxIncluded() {
+    public int getTaxIncluded() {
         return taxIncluded;
     }
 

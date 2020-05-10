@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class BuyerEntity implements Serializable{
     @Id
     @Column(name = "id")
-    private int id;
+    private String id;
 
     @Basic
     @Column(name = "buyerNumber")
@@ -58,7 +58,7 @@ public class BuyerEntity implements Serializable{
 
     }
 
-    public BuyerEntity(int _id, String _buyerNumber, String _buyerName, String _contactInformation,
+    public BuyerEntity(String _id, String _buyerNumber, String _buyerName, String _contactInformation,
                        String _productionCategory, String _purchasingCategories, String _legalPerson, String _contact,
                        String _sex, String _post, String _mail, String _remarks){
         this.id = _id;
@@ -75,11 +75,11 @@ public class BuyerEntity implements Serializable{
         this.remarks = _remarks;
     }
 
-    public void setId(int _id){
+    public void setId(String _id){
         this.id = _id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
