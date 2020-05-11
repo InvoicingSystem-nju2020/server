@@ -1,6 +1,6 @@
 package com.serviceImpl.orders;
 
-import com.bean.orders.AddOrderBean;
+import com.bean.orders.*;
 import com.entity.OrdersEntity;
 import com.repository.orders.OrdersRepository;
 import com.service.orders.OrdersService;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class OrdersImpl implements OrdersService {
@@ -56,6 +57,36 @@ public class OrdersImpl implements OrdersService {
             ex.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public OrdersBean getOrders(GetOrdersBean bean) {
+
+        return null;
+    }
+
+    @Override
+    public SingleOrderByOrderNumberBean getSingleOrderByOrderNumber(String orderNumber) {
+
+        return null;
+    }
+
+    @Override
+    public String updateSingleOrderByOrderNumber(UpdateSingleOrderBean bean) {
+
+        return null;
+    }
+
+    @Override
+    public List<String> updateOrders(UpdateOrdersBean bean) {
+
+        return null;
+    }
+
+    @Override
+    public boolean deleteSingleOrderByOrderNumber(String orderNumber) {
+
+        return false;
     }
 
 }
