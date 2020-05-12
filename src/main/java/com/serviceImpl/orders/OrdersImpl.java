@@ -86,7 +86,7 @@ public class OrdersImpl implements OrdersService {
         List<OrdersListBean> resultOrdersList = new ArrayList<>();
         List<OrdersEntity> ordersEntityList = new ArrayList<>();
         int total = 0;
-        
+
         String salesPerson = bean.getSalesPerson();
         String goodsName = bean.getGoodsName();
         String goodsNumber = bean.getGoodsNumber();
