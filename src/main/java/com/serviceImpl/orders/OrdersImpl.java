@@ -54,7 +54,7 @@ public class OrdersImpl implements OrdersService {
             order.setCreateTime(time);
             order.setDealTime(time);
             order.setState(bean.getState());
-            order.setClient(bean.getClientNumber());
+            order.setClientNumber(bean.getClientNumber());
             order.setWriteAnInvoice(bean.getWriteAnInvoice());
             order.setGoodsNumber(bean.getGoodsNumbers());
             order.setGoodsName(goods.getGoodsName());
@@ -86,8 +86,7 @@ public class OrdersImpl implements OrdersService {
         List<OrdersListBean> resultOrdersList = new ArrayList<>();
         List<OrdersEntity> ordersEntityList = new ArrayList<>();
         int total = 0;
-
-        String clientName = bean.getClientName();
+        
         String salesPerson = bean.getSalesPerson();
         String goodsName = bean.getGoodsName();
         String goodsNumber = bean.getGoodsNumber();
@@ -128,7 +127,7 @@ public class OrdersImpl implements OrdersService {
             String entityCreateTime = ordersEntity.getCreateTime();
             String entityDealTime = ordersEntity.getDealTime();
             String entityState = ordersEntity.getState();
-            String entityClient = ordersEntity.getClient();
+            String entityClientNumber = ordersEntity.getClientNumber();
             int entityWriteAnInvoice = ordersEntity.getWriteAnInvoice();
             String entityGoodsNumber = ordersEntity.getGoodsNumber();
             String entityGoodsName = ordersEntity.getGoodsName();
@@ -139,7 +138,7 @@ public class OrdersImpl implements OrdersService {
             String entityTypeOfPayment = ordersEntity.getTypeOfPayment();
             String entityTypeOfShipping = ordersEntity.getTypeOfShipping();
 
-            boolean flag = entityClient.equals(clientName) && entitySalesPerson.equals(salesPerson) &&
+            boolean flag = entitySalesPerson.equals(salesPerson) &&
                     entityGoodsName.equals(goodsName) && entityGoodsNumber.equals(goodsNumber) &&
                     writeAnInvoice == entityWriteAnInvoice;
             boolean totalAmountFlag = entityTotalAmount > minTotalAmount && entityTotalAmount < maxTotalAmount;
@@ -162,7 +161,7 @@ public class OrdersImpl implements OrdersService {
                 }
                 OrdersListBean ordersListBean = new OrdersListBean();
                 ordersListBean.setOrdersNumber(entityOrderNumber);
-                ordersListBean.setClientName(entityClient);
+                ordersListBean.setClientName(entityClientNumber);
                 ordersListBean.setSalesPerson(entitySalesPerson);
                 ordersListBean.setGoodsNumber(entityGoodsNumber);
                 ordersListBean.setBrand(entityBrand);
@@ -203,7 +202,7 @@ public class OrdersImpl implements OrdersService {
             orderBean.setDealTime(order.getDealTime());
             orderBean.setState(order.getState());
             orderBean.setSalesPerson(order.getSalesPerson());
-            orderBean.setClientName(order.getClient());
+            orderBean.setClientName(order.getClientNumber());
             orderBean.setWriteAnInvoice(order.getWriteAnInvoice()+"");
             orderBean.setGoodsNumber(order.getGoodsNumber());
             orderBean.setBrand(order.getBrand());

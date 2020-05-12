@@ -33,7 +33,7 @@ public class OrdersEntity implements Serializable{
 
     @Basic
     @Column(name = "client")
-    private String client;
+    private String clientNumber;
 
     @Basic
     @Column(name = "writeAnInvoice")
@@ -88,7 +88,7 @@ public class OrdersEntity implements Serializable{
     }
 
     public OrdersEntity(String _id, String _orderNumber, String _salesPerson, String _createTime, String _dealTime,
-                       String _state, String _client, int _writeAnInvoice, String _goodsNumber, String _goodsName, String _goodsNo,
+                       String _state, String _clientNumber, int _writeAnInvoice, String _goodsNumber, String _goodsName, String _goodsNo,
                         String _brand, double _buyingPrice, double _retailPrice, double _finalPrice, int _numbers,
                        double _totalAmount, String _typeOfPayment, String _typeOfShipping){
         this.id = _id;
@@ -97,7 +97,7 @@ public class OrdersEntity implements Serializable{
         this.createTime = _createTime;
         this.dealTime = _dealTime;
         this.state = _state;
-        this.client = _client;
+        this.clientNumber = _clientNumber;
         this.writeAnInvoice = _writeAnInvoice;
         this.goodsNumber = _goodsNumber;
         this.goodsName = _goodsName;
@@ -160,12 +160,12 @@ public class OrdersEntity implements Serializable{
         return state;
     }
 
-    public void setClient(String _client){
-        this.client = _client;
+    public void setClientNumber(String _clientNumber){
+        this.clientNumber = _clientNumber;
     }
 
-    public String getClient() {
-        return client;
+    public String getClientNumber() {
+        return clientNumber;
     }
 
     public void setWriteAnInvoice(int _writeAnInvoice){
