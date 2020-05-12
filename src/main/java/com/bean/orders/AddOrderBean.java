@@ -3,7 +3,6 @@ package com.bean.orders;
 public class AddOrderBean {
     private String salesPerson;
     private String clientNumber;
-    private String clientName;
     private int writeAnInvoice;
     private String goodsNumbers;
     private double finalPrice;
@@ -11,17 +10,17 @@ public class AddOrderBean {
     private double totalAmount;
     private String typeOfPayment;
     private String typeOfShipping;
+    private String state;
 
     public AddOrderBean(){
 
     }
 
-    public AddOrderBean(String _salesPerson, String _clientNumber, String _clientName,
-                        int _writeAnInvoice, String _goodsNumbers, double _finalPrice, int _numbers,
-                        double _totalAmount, String _typeOfPayment, String _typeOfShipping){
+    public AddOrderBean(String _salesPerson, String _clientNumber, int _writeAnInvoice,
+                        String _goodsNumbers, double _finalPrice, int _numbers, double _totalAmount,
+                        String _typeOfPayment, String _typeOfShipping, String _state){
         this.salesPerson = _salesPerson;
         this.clientNumber = _clientNumber;
-        this.clientName = _clientName;
         this.writeAnInvoice = _writeAnInvoice;
         this.goodsNumbers = _goodsNumbers;
         this.finalPrice = _finalPrice;
@@ -29,6 +28,7 @@ public class AddOrderBean {
         this.totalAmount = _totalAmount;
         this.typeOfPayment = _typeOfPayment;
         this.typeOfShipping = _typeOfShipping;
+        this.state = _state;
     }
 
     public void setSalesPerson(String _salesPerson){
@@ -45,14 +45,6 @@ public class AddOrderBean {
 
     public String getClientNumber(){
         return clientNumber;
-    }
-
-    public void setClientName(String _clientName){
-        this.clientName = _clientName;
-    }
-
-    public String getClientName(){
-        return clientName;
     }
 
     public void setWriteAnInvoice(int _writeAnInvoice){
@@ -109,6 +101,14 @@ public class AddOrderBean {
 
     public String getTypeOfShipping() {
         return typeOfShipping;
+    }
+
+    public void setState(String _state) {
+        this.state = _state;
+    }
+
+    public String getState() {
+        return state;
     }
 
 }

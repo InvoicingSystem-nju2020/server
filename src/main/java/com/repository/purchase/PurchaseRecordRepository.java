@@ -56,7 +56,7 @@ public interface PurchaseRecordRepository extends JpaRepository<PurchaseRecordEn
 
     @Transactional
     @Modifying
-    @Query(value = "update purchaserecord set purchaseTime = ?2, goodsNumber = ?3, numbers = ?4, discount = ?5, unitPrice = ?6, balance = ?7, taxIncluded = ?8, precautionForPreservation = ?9, buyer = ?10, remarks = ?11 where id = ?1", nativeQuery = true)
-    void updateSinglePurchaseRecord(String id, String purchaseTime, String goodsNumber, int numbers, double discount, double unitPrice, double totalAmount, int taxIncluded, String precautionForPreservation, String supplier, String remarks);
+    @Query(value = "update purchaserecord set purchaseTime = ?2, goodsNumber = ?3, numbers = ?4, discount = ?5, unitPrice = ?6, balance = ?7, taxIncluded = ?8, precautionForPreservation = ?9, buyerNumber = ?10, remarks = ?11 where id = ?1", nativeQuery = true)
+    void updateSinglePurchaseRecord(String id, String purchaseTime, String goodsNumber, int numbers, double discount, double unitPrice, double totalAmount, int taxIncluded, String precautionForPreservation, String supplierNumber, String remarks);
 
 }

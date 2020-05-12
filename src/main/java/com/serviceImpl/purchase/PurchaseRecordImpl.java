@@ -207,7 +207,7 @@ public class PurchaseRecordImpl implements PurchaseRecordService {
             try{
                 purchaseRecordImpl.purchaseRecordRepository.updateSinglePurchaseRecord(bean.getId(),bean.getPurchaseTime(),
                         bean.getGoodsNumber(),bean.getNumbers(), bean.getDiscount(),bean.getUnitPrice(),bean.getTotalAmount(),
-                        bean.getTaxIncluded(),bean.getPrecautionForPreservation(),bean.getSupplier(),bean.getRemarks());
+                        bean.getTaxIncluded(),bean.getPrecautionForPreservation(),bean.getSupplierNumber(),bean.getRemarks());
 
                 return bean.getId();
             }catch (Exception ex){

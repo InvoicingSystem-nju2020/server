@@ -10,7 +10,7 @@ public class UpdateSinglePurchaseRecordsBean {
     private double totalAmount;
     private int taxIncluded;
     private String precautionForPreservation;
-    private String supplier;
+    private String supplierNumber;
     private String remarks;
 
     public UpdateSinglePurchaseRecordsBean(){
@@ -19,7 +19,7 @@ public class UpdateSinglePurchaseRecordsBean {
 
     public UpdateSinglePurchaseRecordsBean(String _id, String _purchaseTime, String _goodsNumber,
                                            int _numbers, double _discount, double _unitPrice, double _totalAmount, int _taxIncluded,
-                                           String _precautionForPreservation, String _supplier, String _remarks){
+                                           String _precautionForPreservation, String _supplierNumber, String _remarks){
         this.id = _id;
         this.purchaseTime = _purchaseTime;
         this.goodsNumber = _goodsNumber;
@@ -29,7 +29,7 @@ public class UpdateSinglePurchaseRecordsBean {
         this.totalAmount = _totalAmount;
         this.taxIncluded = _taxIncluded;
         this.precautionForPreservation = _precautionForPreservation;
-        this.supplier = _supplier;
+        this.supplierNumber = _supplierNumber;
         this.remarks = _remarks;
     }
 
@@ -105,12 +105,12 @@ public class UpdateSinglePurchaseRecordsBean {
         return precautionForPreservation;
     }
 
-    public void setSupplier(String _supplier){
-        this.supplier = _supplier;
+    public void setSupplierNumber(String _supplierNumber){
+        this.supplierNumber = _supplierNumber;
     }
 
-    public String getSupplier(){
-        return supplier;
+    public String getSupplierNumber(){
+        return supplierNumber;
     }
 
     public void setRemarks(String _remarks){
