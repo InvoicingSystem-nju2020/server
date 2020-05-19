@@ -9,7 +9,7 @@ public interface SupplierService {
 
     SingleSupplierBean getSingleSupplier(String supplierNumber);
 
-    String updateSingleSupplierBySupplierNumber(UpdateSingleSupplierBean bean);
+    String updateSingleSupplierBySupplierNumber(String supplierNumber, UpdateSingleSupplierBean bean);
 
-    boolean deleteSingleSupplierBySupplierNumber(String supplierNumber);
+    String deleteSingleSupplierBySupplierNumber(String supplierNumber);
 }

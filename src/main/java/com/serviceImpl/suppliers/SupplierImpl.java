@@ -73,54 +73,31 @@ public class SupplierImpl implements SupplierService {
         String contactInformation = bean.getContactInformation();
         String mail = bean.getMail();
         int sex = bean.getSex();
+        String sorter = bean.getSorter();
         int desc = bean.getDesc();
         int startIndex = bean.getStartIndex();
         int num = bean.getNum();
 
-        if(desc == 1) suppliersEntitiesList = supplierImpl.supplierRepository.findBySupplierNumberDesc();
-        else suppliersEntitiesList = supplierImpl.supplierRepository.findBySupplierNumberInc();
+            suppliersEntitiesList = supplierImpl.supplierRepository.findAll();
 
-        for(BuyerEntity supplier : suppliersEntitiesList){
-            String entitySupplierNumber = supplier.getBuyerNumber();
-            String entitySupplierName = supplier.getBuyerName();
-            String entityContactInformation = supplier.getContactInformation();
-            String entityProductionCategory = supplier.getProductionCategory();
-            String entityPurchasingCategories = supplier.getPurchasingCategories();
-            String entityLegalPerson = supplier.getLegalPerson();
-            String entityContact = supplier.getContact();
-            String entitySex = supplier.getSex();
-            String entityPost = supplier.getPost();
-            String entityMail = supplier.getMail();
-            String entityRemarks = supplier.getRemarks();
+        for (BuyerEntity supplier : suppliersEntitiesList) {
+            SuppliersReturnListBean returnListBean = new SuppliersReturnListBean();
+            returnListBean.setSupplierNumber(supplier.getBuyerNumber());
+            returnListBean.setSupplierName(supplier.getBuyerName());
+            returnListBean.setContactInformation(supplier.getContactInformation());
+            returnListBean.setRemarks(supplier.getRemarks());
+            returnListBean.setProductionCategory(supplier.getProductionCategory());
+            returnListBean.setPurchasingCategories(supplier.getPurchasingCategories());
+            returnListBean.setLegalPerson(supplier.getLegalPerson());
+            returnListBean.setContact(supplier.getContact());
+            returnListBean.setSex(supplier.getSex());
+            returnListBean.setPost(supplier.getPost());
+            returnListBean.setMail(supplier.getMail());
 
-            if(entitySupplierNumber.equals(supplierNumber) && entitySupplierName.equals(supplierName) &&
-            entityContactInformation.equals(contactInformation) && entityProductionCategory.equals(productionCategory) &&
-            entityPurchasingCategories.equals(purchasingCategories) && entityContact.equals(contact) &&
-            entityMail.equals(mail) && entitySex.equals(sex)){
-                SuppliersReturnListBean listBean = new SuppliersReturnListBean();
-
-                listBean.setSupplierNumber(entitySupplierNumber);
-                listBean.setSupplierName(entitySupplierName);
-                listBean.setContactInformation(entityContactInformation);
-                listBean.setRemarks(entityRemarks);
-                listBean.setProductionCategory(entityProductionCategory);
-                listBean.setPurchasingCategories(entityPurchasingCategories);
-                listBean.setLegalPerson(entityLegalPerson);
-                listBean.setContact(entityContact);
-                listBean.setSex(entitySex);
-                listBean.setPost(entityPost);
-                listBean.setMail(entityMail);
-
-                totalSuppliersList.add(listBean);
-            }
+            totalSuppliersList.add(returnListBean);
         }
 
-        total = totalSuppliersList.size();
-        if(startIndex + num < total){
-            for(int index = startIndex; index < startIndex + num; index++)
-                resultSuppliersList.add(totalSuppliersList.get(index));
-        }
-        SuppliersReturnBean suppliersReturnBean = new SuppliersReturnBean(resultSuppliersList, total);
+        SuppliersReturnBean suppliersReturnBean = new SuppliersReturnBean(totalSuppliersList, totalSuppliersList.size());
 
         return suppliersReturnBean;
     }
@@ -150,16 +127,16 @@ public class SupplierImpl implements SupplierService {
     }
 
     @Override
-    public String updateSingleSupplierBySupplierNumber(UpdateSingleSupplierBean bean) {
-        Optional<BuyerEntity> optionalSupplier = supplierImpl.supplierRepository.findById(bean.getSupplierNumber());
+    public String updateSingleSupplierBySupplierNumber(String supplierNumber, UpdateSingleSupplierBean bean) {
+        Optional<BuyerEntity> optionalSupplier = supplierImpl.supplierRepository.findById(supplierNumber);
         BuyerEntity supplier = optionalSupplier.isPresent() ? optionalSupplier.get() : null;
         if(supplier != null){
             try{
-                supplierImpl.supplierRepository.updateSingleSupplier(bean.getSupplierNumber(), bean.getSupplierName(), bean.getContactInformation(),
+                supplierImpl.supplierRepository.updateSingleSupplier(supplierNumber, bean.getSupplierName(), bean.getContactInformation(),
                         bean.getRemarks(), bean.getProductionCategory(), bean.getPurchasingCategories(), bean.getLegalPerson(), bean.getContact(),
                         bean.getSex(), bean.getPost(), bean.getMail());
 
-                return bean.getSupplierNumber();
+                return supplierNumber;
             }catch (Exception ex){
                 ex.printStackTrace();
                 return "更新错误";
@@ -169,20 +146,20 @@ public class SupplierImpl implements SupplierService {
     }
 
     @Override
-    public boolean deleteSingleSupplierBySupplierNumber(String supplierNumber) {
+    public String deleteSingleSupplierBySupplierNumber(String supplierNumber) {
         Optional<BuyerEntity> optionalSupplier = supplierImpl.supplierRepository.findById(supplierNumber);
         BuyerEntity supplier = optionalSupplier.isPresent() ? optionalSupplier.get() : null;
         if(supplier != null){
             try {
                 supplierImpl.supplierRepository.deleteById(supplierNumber);
 
-                return true;
+                return "成功删除" + supplierNumber + "供应商";
             }catch (Exception ex){
                 ex.printStackTrace();
-                return false;
+                return "删除" + supplierNumber + "出错";
             }
         }
 
-        return false;
+        return "删除" + supplierNumber + "出错";
     }
 }
