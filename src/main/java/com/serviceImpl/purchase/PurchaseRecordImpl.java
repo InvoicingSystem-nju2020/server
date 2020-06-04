@@ -1,12 +1,9 @@
 package com.serviceImpl.purchase;
 
 import com.bean.purchase.*;
-import com.bean.suppliers.SuppliersReturnBean;
-import com.bean.suppliers.SuppliersReturnListBean;
-import com.entity.BuyerEntity;
 import com.entity.GoodsEntity;
 import com.entity.PurchaseRecordEntity;
-import com.repository.goods.GoodsRepository;
+import com.repository.goods.goodsRepository;
 import com.repository.purchase.PurchaseRecordRepository;
 import com.service.purchase.PurchaseRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +21,7 @@ public class PurchaseRecordImpl implements PurchaseRecordService {
     private PurchaseRecordRepository purchaseRecordRepository;
 
     @Autowired
-    private GoodsRepository goodsRepository;
+    private goodsRepository goodsRepository;
 
     private static PurchaseRecordImpl purchaseRecordImpl;
     private static int idLength = 6;

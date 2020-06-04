@@ -3,7 +3,7 @@ package com.serviceImpl.orders;
 import com.bean.orders.*;
 import com.entity.GoodsEntity;
 import com.entity.OrdersEntity;
-import com.repository.goods.GoodsRepository;
+import com.repository.goods.goodsRepository;
 import com.repository.orders.OrdersRepository;
 import com.service.orders.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class OrdersImpl implements OrdersService {
     private OrdersRepository ordersRepository;
 
     @Autowired
-    private GoodsRepository goodsRepository;
+    private goodsRepository goodsRepository;
 
     private static OrdersImpl ordersImpl;
     private static int idLength = 6;
@@ -43,7 +43,7 @@ public class OrdersImpl implements OrdersService {
         id = time + id;
 
         String goodsNumber = bean.getGoodsNumbers();
-        Optional<GoodsEntity> optionalGoods = ordersImpl.goodsRepository.findByGoodsNumber(goodsNumber);
+        Optional<GoodsEntity> optionalGoods = ordersImpl.goodsRepository.findByGoodsNumberFromGoods(goodsNumber);
         GoodsEntity goods = optionalGoods.isPresent() ? optionalGoods.get() : null;
         if(goods != null) {
             OrdersEntity order = new OrdersEntity();
@@ -154,7 +154,7 @@ public class OrdersImpl implements OrdersService {
 
             if(flag && totalAmountFlag && brandFlag && stateFlag){
                 String unit = "";
-                Optional<GoodsEntity> optionalGoods = ordersImpl.goodsRepository.findByGoodsNumber(entityGoodsNumber);
+                Optional<GoodsEntity> optionalGoods = ordersImpl.goodsRepository.findByGoodsNumberFromGoods(entityGoodsNumber);
                 GoodsEntity goods = optionalGoods.isPresent() ? optionalGoods.get() : null;
                 if(goods != null) {
                     unit = goods.getUnit();
