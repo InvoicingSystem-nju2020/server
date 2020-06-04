@@ -17,7 +17,24 @@ public class ClientsController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ClientsBean getOrders(@RequestParam GetClientsBean bean){
+    public ClientsBean getOrders(@RequestParam(defaultValue = "") String clientsNumber,@RequestParam(defaultValue = "") String clientsName,
+                                 @RequestParam(defaultValue = "") String[] clientsType,@RequestParam(defaultValue = "") String clientsContact,
+                                 @RequestParam(defaultValue = "") String contactInformation,@RequestParam(defaultValue = "") String mail,
+                                 @RequestParam(defaultValue = "0") Integer clientsSex,@RequestParam(defaultValue = "") String sorter,
+                                 @RequestParam(defaultValue = "0") Integer  desc, @RequestParam(defaultValue = "0") Integer  startIndex,
+                                 @RequestParam(defaultValue = "100") Integer  num){
+        GetClientsBean bean =new  GetClientsBean();
+        bean.setClientsNumber(clientsNumber);
+        bean.setClientsName(clientsName);
+        bean.setClientsType(clientsType);
+        bean.setClientsContact(clientsContact);
+        bean.setContactInformation(contactInformation);
+        bean.setMail(mail);
+        bean.setClientsSex(clientsSex);
+        bean.setSorter(sorter);
+        bean.setDesc(desc);
+        bean.setStartIndex(startIndex);
+        bean.setNum(num);
         return cliensService.getCLients(bean);
     }
 
@@ -27,12 +44,12 @@ public class ClientsController {
     }
 
     @RequestMapping(value = "/{clientsNumber}", method = RequestMethod.PUT)
-    public String updateSingleClientByClientNumber(@RequestBody UpdateSingleClientBean bean,@PathVariable("clientsNumber") String clientsNumber){
+    public String updateSingleClientByClientNumber(@RequestBody UpdateSingleClientBean bean, @PathVariable("clientsNumber") String clientsNumber){
         return cliensService.updateSingleClientByClientNumber(bean,clientsNumber);
     }
 
     @RequestMapping(value = "/{balance}", method = RequestMethod.PATCH)
-    public boolean changeClientBalance(@RequestBody UpdateSingleClientBean bean,double balance){
+    public boolean changeClientBalance(@RequestBody UpdateSingleClientBean bean, double balance){
         return cliensService.changeClientBalance(bean.getClientsNumber(),balance);
     }
 
