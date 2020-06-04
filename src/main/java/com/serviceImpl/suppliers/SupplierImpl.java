@@ -61,24 +61,7 @@ public class SupplierImpl implements SupplierService {
     @Override
     public SuppliersReturnBean getSuppliers(GetSuppliersBean bean) {
         List<SuppliersReturnListBean> totalSuppliersList = new ArrayList<>();
-        List<SuppliersReturnListBean> resultSuppliersList = new ArrayList<>();
-        List<BuyerEntity> suppliersEntitiesList = new ArrayList<>();
-        int total = 0;
-
-        String supplierNumber = bean.getSupplierNumber();
-        String supplierName = bean.getSupplierName();
-        String productionCategory = bean.getProductionCategory();
-        String purchasingCategories = bean.getPurchasingCategories();
-        String contact = bean.getContact();
-        String contactInformation = bean.getContactInformation();
-        String mail = bean.getMail();
-        int sex = bean.getSex();
-        String sorter = bean.getSorter();
-        int desc = bean.getDesc();
-        int startIndex = bean.getStartIndex();
-        int num = bean.getNum();
-
-            suppliersEntitiesList = supplierImpl.supplierRepository.findAll();
+        List<BuyerEntity> suppliersEntitiesList = suppliersEntitiesList = supplierImpl.supplierRepository.findAll();
 
         for (BuyerEntity supplier : suppliersEntitiesList) {
             SuppliersReturnListBean returnListBean = new SuppliersReturnListBean();
@@ -98,7 +81,6 @@ public class SupplierImpl implements SupplierService {
         }
 
         SuppliersReturnBean suppliersReturnBean = new SuppliersReturnBean(totalSuppliersList, totalSuppliersList.size());
-
         return suppliersReturnBean;
     }
 

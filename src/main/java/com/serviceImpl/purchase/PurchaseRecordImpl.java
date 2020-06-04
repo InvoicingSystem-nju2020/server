@@ -1,6 +1,9 @@
 package com.serviceImpl.purchase;
 
 import com.bean.purchase.*;
+import com.bean.suppliers.SuppliersReturnBean;
+import com.bean.suppliers.SuppliersReturnListBean;
+import com.entity.BuyerEntity;
 import com.entity.GoodsEntity;
 import com.entity.PurchaseRecordEntity;
 import com.repository.goods.GoodsRepository;
@@ -65,103 +68,27 @@ public class PurchaseRecordImpl implements PurchaseRecordService {
 
     @Override
     public PurchaseRecordsBean getPurchaseRecords(GetPurchaseRecordsBean bean) {
-        List<PurchaseRecordsListBean> totalBeanList = new ArrayList<>();
-        List<PurchaseRecordsListBean> resultBeanList = new ArrayList<>();
-        List<PurchaseRecordEntity> entityList = new ArrayList<>();
+        List<PurchaseRecordsListBean> listBeans = new ArrayList<>();
+        List<PurchaseRecordEntity> purchaseRecordEntityList = purchaseRecordImpl.purchaseRecordRepository.findAll();
 
-        String recordGoodsName = bean.getGoodsName();
-        String recordBrand = bean.getBrand();
-        String recordSupplier = bean.getSupplier();
-        int recordMinNumbers = bean.getMinNumbers();
-        int recordMaxNumbers = bean.getMaxNumbers();
-        double recordMinRetailPrice = bean.getMinRetailPrice();
-        double recordMaxRetailPrice = bean.getMaxRetailPrice();
-        double recordMinDiscount = bean.getMinDiscount();
-        double recordMaxDiscount = bean.getMaxDiscount();
-        double recordMinUnitPrice = bean.getMinUnitPrice();
-        double recordMaxUnitPrice = bean.getMaxUnitPrice();
-        double recordMinTotalAmount = bean.getMinTotalAmount();
-        double recordMaxTotalAmount = bean.getMaxTotalAmount();
-        int recordTaxIncluded = bean.getTaxIncluded();
-        String recordSorter = bean.getSorter();
-        int recordDesc = bean.getDesc();
-        int recordStartIndex = bean.getStartIndex();
-        int recordNum = bean.getNum();
+        for (PurchaseRecordEntity purchaseRecord: purchaseRecordEntityList) {
+            PurchaseRecordsListBean returnListBean = new PurchaseRecordsListBean();
+            returnListBean.setId(purchaseRecord.getId());
+            returnListBean.setPurchaseTime(purchaseRecord.getPurchaseTime());
+            returnListBean.setCreateTime(purchaseRecord.getCreateTime());
+            returnListBean.setGoodsNumber(purchaseRecord.getGoodsNumber());
+            returnListBean.setBrand(purchaseRecord.getGoodsNumber());
+            returnListBean.setGoodsName(purchaseRecord.getGoodsNumber());
+            returnListBean.setUnitPrice(purchaseRecord.getUnitPrice());
+            returnListBean.setNumbers(purchaseRecord.getNumbers());
+            returnListBean.setTotalAmount(purchaseRecord.getBalance());
+            returnListBean.setSupplier(purchaseRecord.getBuyer());
 
-        if(recordSorter.equals("purchaseTime")) entityList = purchaseRecordImpl.purchaseRecordRepository.findAll();
-        else if(recordSorter.equals("createTime")) entityList = purchaseRecordImpl.purchaseRecordRepository.findAll();
-        else if(recordSorter.equals("") || recordSorter == null){
-            if(recordDesc == 1) entityList = purchaseRecordImpl.purchaseRecordRepository.findByIdDesc();
-            else entityList = purchaseRecordImpl.purchaseRecordRepository.findByIdInc();
-        }
-        else if(recordSorter.equals("goodsNumber")){
-            if(recordDesc == 1) entityList = purchaseRecordImpl.purchaseRecordRepository.findByGoodsNumberDesc();
-            else entityList = purchaseRecordImpl.purchaseRecordRepository.findByGoodsNumberInc();
-        }
-        else if(recordSorter.equals("numbers")){
-            if(recordDesc == 1) entityList = purchaseRecordImpl.purchaseRecordRepository.findByNumbersDesc();
-            else entityList = purchaseRecordImpl.purchaseRecordRepository.findByNumbersInc();
-        }
-        else if(recordSorter.equals("retailPrice")){
-            if(recordDesc == 1) entityList = purchaseRecordImpl.purchaseRecordRepository.findByRetailPriceDesc();
-            else entityList = purchaseRecordImpl.purchaseRecordRepository.findByRetailPriceInc();
-        }
-        else if(recordSorter.equals("discount")){
-            if(recordDesc == 1) entityList = purchaseRecordImpl.purchaseRecordRepository.findByDiscountDesc();
-            else entityList = purchaseRecordImpl.purchaseRecordRepository.findByDiscountInc();
-        }
-        else if(recordSorter.equals("unitPrice")){
-            if(recordDesc == 1) entityList = purchaseRecordImpl.purchaseRecordRepository.findByUnitPriceDesc();
-            else entityList = purchaseRecordImpl.purchaseRecordRepository.findByUnitPriceInc();
-        }
-        else if(recordSorter.equals("totalAmount")){
-            if(recordDesc == 1) entityList = purchaseRecordImpl.purchaseRecordRepository.findByTotalAmountDesc();
-            else entityList = purchaseRecordImpl.purchaseRecordRepository.findByTotalAmountInc();
+           listBeans.add(returnListBean);
         }
 
-        for(PurchaseRecordEntity entity : entityList){
-            String entityId = entity.getId();
-            String entityCreateTime = entity.getCreateTime();
-            String entityPurchaseTime = entity.getPurchaseTime();
-            String entityGoodsNumber = entity.getGoodsNumber();
-            int entityNumbers= entity.getNumbers();
-            double entityDiscount = entity.getDiscount();
-            double entityUnitPrice = entity.getUnitPrice();
-            double entityBalance = entity.getBalance();
-            int entityTaxIncluded = entity.getTaxIncluded();
-
-            boolean taxIncludedFlag = recordTaxIncluded == entityTaxIncluded;
-            boolean numbersFlag = recordMinNumbers < entityNumbers && recordMaxNumbers > entityNumbers;
-            boolean retailPriceFlag = recordMinRetailPrice < entityUnitPrice && recordMaxRetailPrice > entityUnitPrice;
-            boolean discountFlag = recordMinDiscount < entityDiscount && recordMaxDiscount > entityDiscount;
-            boolean unitPriceFlag = recordMinUnitPrice < entityUnitPrice && recordMaxUnitPrice > entityUnitPrice;
-            boolean totalAmountFlag = recordMinTotalAmount < entityBalance && recordMaxTotalAmount> entityBalance;
-
-            if(taxIncludedFlag && numbersFlag && retailPriceFlag && discountFlag && unitPriceFlag && totalAmountFlag){
-                PurchaseRecordsListBean purchaseRecordsListBean = new PurchaseRecordsListBean();
-                purchaseRecordsListBean.setId(entityId);
-                purchaseRecordsListBean.setPurchaseTime(entityPurchaseTime);
-                purchaseRecordsListBean.setCreateTime(entityCreateTime);
-                purchaseRecordsListBean.setGoodsNumber(entityGoodsNumber);
-                purchaseRecordsListBean.setBrand(recordBrand);
-                purchaseRecordsListBean.setGoodsName(recordGoodsName);
-                purchaseRecordsListBean.setUnitPrice(Double.valueOf(entityUnitPrice));
-                purchaseRecordsListBean.setNumbers(Integer.valueOf(entityNumbers));
-                purchaseRecordsListBean.setTotalAmount(Double.valueOf(entityBalance));
-                purchaseRecordsListBean.setSupplier(recordSupplier);
-
-                totalBeanList.add(purchaseRecordsListBean);
-            }
-        }
-
-        int total =totalBeanList.size();
-        if(recordStartIndex + recordNum < total){
-            for(int index = recordStartIndex; index < recordStartIndex + recordNum; index++)
-                resultBeanList.add(totalBeanList.get(index));
-        }
-
-        PurchaseRecordsBean recordsBean = new PurchaseRecordsBean(resultBeanList, total);
-        return recordsBean;
+       PurchaseRecordsBean purchaseRecordsBean = new PurchaseRecordsBean(listBeans, listBeans.size());
+        return purchaseRecordsBean;
     }
 
     @Override
